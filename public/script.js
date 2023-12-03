@@ -127,6 +127,7 @@ function update() {
       dino.y + dino.height > obstacle.y
     ) {
       stopcounter();
+      alert('Gameouver');
       document.location.reload();
     }
   }

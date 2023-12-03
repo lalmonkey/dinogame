@@ -25,9 +25,10 @@ connection.connect((err) => {
     console.log('MySQL에 연결되었습니다.');
   }
 });
+
 function createCounterTable() {
     connection.query(`
-        CREATE TABLE IF NOT EXISTS counters (
+        CREATE TABLE counters (
             id INT 
         )
     `, err => {

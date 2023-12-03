@@ -17,13 +17,14 @@ const connection = mysql.createConnection({
   database: 'dino',
   port: '32262', 
 });
-con.connect(function(err) {
+
+connection.connect(function(err) {
 
   if (err) throw err;
 
   console.log("Connected!");
 
-  con.query("CREATE DATABASE dino", function (err, result) {
+  connection.query("CREATE DATABASE dino", function (err, result) {
 
     if (err) throw err;
 

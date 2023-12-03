@@ -24,39 +24,39 @@ obstacleImage.src = 'li.jpg'; // 장애물 이미지 파일 경로
 
 function updatemaxCounter() {
     
-  }
+}
 
 const counterElement = document.getElementById('counter');
 let counterValue = 0;
 
 function updateCounter() {
-  counterValue += 1;
-  counterElement.textContent = counterValue;
+counterValue += 1;
+counterElement.textContent = counterValue;
 }
 
 setInterval(updateCounter, 100);
-  
-function updatemaxCounter(maxId) {
-    console.log('Received maxId:', maxId);
-    document.getElementById('HI').textContent = maxId;
-  }
-  
-  function getMaxcount() {
-    fetch('/get-maxcount')
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          updatemaxCounter(data.maxId);
-        } else {
-          console.error('Failed to get maxId from server.');
-        }
-      })
-      .catch((error) => {
-        console.error('Error during fetch:', error);
-      });
-  }
-  getMaxcount();
 
+function updatemaxCounter(maxId) {
+  console.log('Received maxId from server:', maxId);
+  document.getElementById('HI').textContent = maxId;
+}
+
+function getMaxIdFromServer() {
+  fetch('/get-max-id')
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        updatemaxCounter(data.maxId);
+      } else {
+        console.error('Failed to get maxId from server.');
+      }
+    })
+    .catch((error) => {
+      console.error('Error during fetch:', error);
+    });
+}
+
+getMaxIdFromServer();
 function stopcounter() {
   fetch('/update-counter', {
     method: 'POST',

@@ -20,7 +20,7 @@ dinoImage.onload = function () {
   init();
 };
 const obstacleImage = new Image();
-obstacleImage.src = 'li.jpg'; // 장애물 이미지 파일 경로
+obstacleImage.src = 'sin.jpg'; // 장애물 이미지 파일 경로
 
 function updatemaxCounter() {
     

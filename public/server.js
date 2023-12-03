@@ -17,7 +17,21 @@ const connection = mysql.createConnection({
   database: 'dino',
   port: '32262', 
 });
+con.connect(function(err) {
 
+  if (err) throw err;
+
+  console.log("Connected!");
+
+  con.query("CREATE DATABASE counters", function (err, result) {
+
+    if (err) throw err;
+
+    console.log("Database created");
+
+  });
+
+});
 
 connection.connect((err) => {
   if (err) {

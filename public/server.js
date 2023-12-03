@@ -14,7 +14,6 @@ const connection = mysql.createConnection({
   host: 'svc.sel4.cloudtype.app',
   user: 'root',
   password: '1234',
-  database: 'dino',
   port: '32262', 
 });
 

@@ -19,17 +19,11 @@ const connection = mysql.createConnection({
 });
 
 connection.connect(function(err) {
-
   if (err) throw err;
-
   console.log("Connected!");
-
   connection.query("CREATE DATABASE dino", function (err, result) {
-
     if (err) throw err;
-
     console.log("Database created");
-
   });
 
 });

@@ -23,7 +23,7 @@ con.connect(function(err) {
 
   console.log("Connected!");
 
-  con.query("CREATE DATABASE counters", function (err, result) {
+  con.query("CREATE DATABASE dino", function (err, result) {
 
     if (err) throw err;
 

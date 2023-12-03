@@ -25,6 +25,20 @@ connection.connect((err) => {
     console.log('MySQL에 연결되었습니다.');
   }
 });
+function createCounterTable() {
+    connection.query(`
+        CREATE TABLE IF NOT EXISTS counters (
+            id INT 
+        )
+    `, err => {
+        if (err) {
+            console.error('테이블 생성 오류: ', err);
+        } else {
+            console.log('테이블이 생성되었습니다.');
+            startCounterUpdate(); 
+        }
+    });
+}
 
 app.post('/update-counter', (req, res) => {
   const { counterValue } = req.body;

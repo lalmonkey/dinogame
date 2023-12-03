@@ -23,6 +23,7 @@ connection.connect((err) => {
     console.error('MySQL 연결 오류: ', err);
   } else {
     console.log('MySQL에 연결되었습니다.');
+    createCounterTable()
   }
 });
 

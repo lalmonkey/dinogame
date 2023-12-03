@@ -7,30 +7,23 @@ const mysql = require('mysql2');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-
+app.use(express.static('public'));
 app.use(bodyParser.json()); 
 
 const connection = mysql.createConnection({
-  host: 'svc.sel4.cloudtype.app',
+  host: 'localhost',
   user: 'root',
   password: '1234',
-  port: '32262', 
-  data: 'dino'
+  database: 'dino'
 });
 
-function createCounterTable() {
-    connection.query(`
-        CREATE TABLE counters (
-            id INT
-        )
-    `, err => {
-        if (err) {
-            console.error('테이블 생성 오류: ', err);
-        } else {
-            console.log('테이블이 생성되었습니다.');
-        }
-    });
-}
+connection.connect((err) => {
+  if (err) {
+    console.error('MySQL 연결 오류: ', err);
+  } else {
+    console.log('MySQL에 연결되었습니다.');
+  }
+});
 
 app.post('/update-counter', (req, res) => {
   const { counterValue } = req.body;
@@ -48,12 +41,12 @@ app.post('/update-counter', (req, res) => {
   });
 });
 
-app.get('/get-maxcount', (req, res) => {
+app.get('/get-max-id', (req, res) => {
     // 최대 값 조회 쿼리
     connection.query('SELECT MAX(id) AS maxId FROM counters', (err, results) => {
       if (err) {
         console.error('최대 값 조회 오류: ', err);
-        res.status(500).json({ success: false, error: ' Server Error' });
+        res.status(500).json({ success: false, error: 'Internal Server Error' });
       } else {
         // 최대 값 전송
         const maxId = results[0].maxId;
@@ -69,5 +62,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+    console.log(`Server is running on http://localhost:${PORT}`);
+  });

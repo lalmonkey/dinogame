@@ -15,7 +15,7 @@ const connection = mysql.createConnection({
   user: 'root',
   password: '1234',
   port: '32262', 
-  data: 'dino',
+  data: 'dino'
 });
 
 function createCounterTable() {

@@ -11,10 +11,11 @@ app.use(express.static('public'));
 app.use(bodyParser.json()); 
 
 const connection = mysql.createConnection({
-  host: 'localhost',
+  host: 'svc.sel4.cloudtype.app',
   user: 'root',
   password: '1234',
-  database: 'dino'
+  database: 'dino',
+  port: '32262'
 });
 
 connection.connect((err) => {
